@@ -12,9 +12,9 @@ namespace DigiKala.Persistence.Repositories
     {
         private readonly AppDbContext _context;
 
-        public ProductRepository(AppDbContext context)
+        public ProductRepository()
         {
-            _context = context;
+            _context = new AppDbContext();
         }
 
        
