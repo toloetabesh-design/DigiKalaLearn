@@ -1,7 +1,8 @@
 ﻿using DigiKala.Domain.Entities;
 using Infrastructure.Data;
 
-namespace DigiKala.Persistence.Repositories
+namespace DigiKala.Infrastructure.Repositories
+
 {
     public class ProductRepository : IProductRepository
     {
