@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DigiKala.Application\DigiKala.Application.csproj" />
     <ProjectReference Include="..\DigiKala.Domain\DigiKala.Domain.csproj" />
   </ItemGroup>
 

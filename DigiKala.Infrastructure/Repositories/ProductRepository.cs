@@ -6,7 +6,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DigiKala.Infrastructure.Repositories
 {
-    // این بخش ": IProductRepository" برای رفع خطای قبلی شما حیاتی است
     public class ProductRepository : IProductRepository
     {
         public readonly AppDbContext _context;
