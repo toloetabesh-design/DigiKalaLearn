@@ -1,4 +1,5 @@
 ﻿using DigiKala.Domain.Entities;
+using Infrastructure.Data;
 
 namespace DigiKala.Persistence.Repositories
 {
