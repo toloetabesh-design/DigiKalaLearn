@@ -1,10 +1,4 @@
-﻿using DigiKala.Application.Interfaces;
-using DigiKala.Domain.Entities;
-using Infrastructure.Data;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DigiKala.Domain.Entities;
 
 namespace DigiKala.Persistence.Repositories
 {
@@ -54,6 +48,10 @@ namespace DigiKala.Persistence.Repositories
         }
 
      
+    }
+
+    public interface IProductRepository
+    {
     }
 }
 
