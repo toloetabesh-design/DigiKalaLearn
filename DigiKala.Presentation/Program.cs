@@ -1,75 +1,75 @@
 ﻿using DigiKala.Application.BusinessServices;
 using DigiKala.Application.Interfaces;
 using DigiKala.Application.Mapping;
+using DigiKala.Application.Services;
+using DigiKala.Persistence.Interfaces;
 using DigiKala.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
 
-namespace DigiKala.Presentation
+// ۱. تنظیم اولیه لاگر برای مدیریت خطاهای زمان استارت‌آپ
+var logger = LogManager.Setup().LoadConfigurationFromFile("nlog.config").GetCurrentClassLogger();
+
+try
 {
-    public class Program
+    logger.Info("Starting DigiKala Web API Application...");
+
+    var builder = WebApplication.CreateBuilder(args);
+
+    // ۲. پیکربندی NLog برای جایگزینی با لاگرهای پیش‌فرض مایکروسافت
+    builder.Logging.ClearProviders();
+    builder.Host.UseNLog();
+
+    // ۳. اضافه کردن سرویس‌های اصلی ASP.NET Core
+    builder.Services.AddControllers();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    // ۴. تنظیمات دیتابیس (SQL Server)
+    builder.Services.AddDbContext<AppDbContext>(options =>
+        options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+    // ۵. ثبت سرویس‌های مربوط به Product (طبق ساختار Clean Architecture شما)
+    // ثبت Repository
+    builder.Services.AddScoped<IProductRepository, ProductRepository>();
+
+    // ثبت Service
+    builder.Services.AddScoped<IProductService, ProductService>();
+
+    // ۶. تنظیم AutoMapper (فقط برای پروفایل محصول)
+    builder.Services.AddAutoMapper(typeof(ProductProfile));
+
+    var app = builder.Build();
+
+    // ۷. پیکربندی Middlewareها (Pipeline)
+    if (app.Environment.IsDevelopment())
     {
-        public static void Main(string[] args)
-        {
-            // ۱. تنظیم Logger برای شروع کار قبل از ساخت Builder
-            var logger = LogManager.Setup().GetCurrentClassLogger();
-
-            try
-            {
-                logger.Information("Starting DigiKala Web API...");
-
-                var builder = WebApplication.CreateBuilder(args);
-
-                // ۲. اتصال NLog به سیستم Logging پیش‌فرض ASP.NET Core
-                builder.Logging.ClearProviders();
-                builder.Host.UseNLog();
-
-                // --- ثبت سرویس‌ها (Dependency Injection) ---
-                builder.Services.AddControllers();
-                builder.Services.AddEndpointsApiExplorer();
-                builder.Services.AddSwaggerGen();
-
-                // تنظیم دیتابیس SQL Server
-                builder.Services.AddDbContext<AppDbContext>(options =>
-                    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-
-                // تنظیم AutoMapper
-                builder.Services.AddAutoMapper(typeof(ProductProfile));
-
-                // ثبت Repository و Service (مطابق با Clean Architecture شما)
-                builder.Services.AddScoped<IProductRepository, ProductRepository>();
-                builder.Services.AddScoped<IProductService, ProductService>();
-                // ------------------------------------------
-
-                var app = builder.Build();
-
-                // ۳. تنظیمات Middleware (پایپ‌لاین درخواست‌ها)
-                if (app.Environment.IsDevelopment())
-                {
-                    app.UseSwagger();
-                    app.UseSwaggerUI();
-                    logger.Information("Swagger is enabled in Development mode.");
-                }
-
-                app.UseAuthorization();
-                app.MapControllers();
-
-                // ۴. اجرای برنامه
-                app.Run();
-            }
-            catch (Exception exception)
-            {
-                // اگر در هنگام بالا آمدن برنامه خطایی رخ دهد، حتماً لاگ شود
-                logger.Error(exception, "Stopped program because of exception");
-                throw;
-            }
-            finally
-            {
-                // اطمینان از اینکه تمام لاگ‌ها قبل از بسته شدن کامل برنامه در فایل ذخیره می‌شوند
-                LogManager.Shutdown();
-            }
-        }
+        app.UseSwagger();
+        app.UseSwaggerUI();
+        logger.Info("Swagger is enabled in Development mode.");
     }
-}
 
+    // استفاده از HTTPS (اختیاری برای توسعه محلی)
+    app.UseHttpsRedirection();
+
+    // اجازه دسترسی طبق قوانین تعریف شده
+    app.UseAuthorization();
+
+    // نگاشت کنترلرها
+    app.MapControllers();
+
+    // ۸. اجرای برنامه
+    app.Run();
+}
+catch (Exception exception)
+{
+    // اگر برنامه در حین اجرا یا استارت‌آپ کرش کند، خطا را لاگ می‌کند
+    logger.Error(exception, "DigiKala Application terminated unexpectedly!");
+    throw;
+}
+finally
+{
+    // اطمینان از اینکه تمام لاگ‌ها در فایل ذخیره شده‌اند قبل از بسته شدن کامل برنامه
+    LogManager.Shutdown();
+}

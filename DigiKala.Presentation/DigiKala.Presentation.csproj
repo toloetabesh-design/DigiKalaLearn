@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DigiKala.Application\DigiKala.Application.csproj" />
+    <ProjectReference Include="..\DigiKala.Domain\DigiKala.Domain.csproj" />
     <ProjectReference Include="..\DigiKala.Infrastructure\DigiKala.Infrastructure.csproj" />
     <ProjectReference Include="..\DigiKala.Persistence\DigiKala.Persistence.csproj" />
   </ItemGroup>
