@@ -1,7 +1,7 @@
 ﻿using DigiKala.Application.Dtos;
 using DigiKala.Application.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging; // ۱. اضافه کردن این فضای نام برای استفاده از ILogger
+using Microsoft.Extensions.Logging; 
 
 namespace DigiKala.Presentation.Controllers
 {
@@ -10,18 +10,18 @@ namespace DigiKala.Presentation.Controllers
     public class ProductController : ControllerBase
     {
         private readonly IProductService _productService;
-        private readonly ILogger<ProductController> _logger; // ۲. تعریف لاگر اختصاصی برای این کنترلر
+        private readonly ILogger<ProductController> _logger; 
 
         public ProductController(IProductService productService, ILogger<ProductController> logger)
         {
             _productService = productService;
-            _logger = logger; // ۳. تزریق لاگر از طریق Constructor
+            _logger = logger; 
         }
 
         [HttpGet]
         public IActionResult Get()
         {
-            _logger.LogInformation("Fetching all products..."); // لاگ اطلاعاتی
+            _logger.LogInformation("Fetching all products..."); 
             try
             {
                 var products = _productService.Get();
@@ -29,7 +29,7 @@ namespace DigiKala.Presentation.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error occurred while fetching products."); // لاگ خطا
+                _logger.LogError(ex, "Error occurred while fetching products."); 
                 return StatusCode(500, "Internal server error");
             }
         }
