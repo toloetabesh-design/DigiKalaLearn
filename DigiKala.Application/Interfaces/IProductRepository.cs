@@ -15,5 +15,6 @@ namespace DigiKala.Application.Interfaces
 
         void Delete(int id);
         object Get();
+        void Insert(Product newProduct);
     }
 }
