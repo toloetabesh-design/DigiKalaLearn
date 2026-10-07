@@ -7,7 +7,6 @@ using NLog;
 using NLog.Web;
 using DigiKala.Persistence;
 
-// ۱. تنظیم اولیه لاگر برای مدیریت خطاهای زمان استارت‌آپ
 var logger = LogManager.Setup().LoadConfigurationFromFile("nlog.config").GetCurrentClassLogger();
 
 try
@@ -16,27 +15,20 @@ try
 
     var builder = WebApplication.CreateBuilder(args);
 
-    // ۲. پیکربندی NLog برای جایگزینی با لاگرهای پیش‌فرض مایکروسافت
     builder.Logging.ClearProviders();
     builder.Host.UseNLog();
 
-    // ۳. اضافه کردن سرویس‌های اصلی ASP.NET Core
     builder.Services.AddControllers();
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
 
-    // ۴. تنظیمات دیتابیس (SQL Server)
     builder.Services.AddDbContext<AppDbContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-    // ۵. ثبت سرویس‌های مربوط به Product (طبق ساختار Clean Architecture شما)
-    // ثبت Repository
     builder.Services.AddScoped<IProductRepository, ProductRepository>();
 
-    // ثبت Service
     builder.Services.AddScoped<IProductService, ProductService>();
 
-    // ۶. تنظیم AutoMapper (فقط برای پروفایل محصول)
     builder.Services.AddAutoMapper(typeof(ProductProfile));
 
     var app = builder.Build();
