@@ -1,8 +1,6 @@
 ﻿using DigiKala.Application.BusinessServices;
 using DigiKala.Application.Interfaces;
 using DigiKala.Application.Mapping;
-using DigiKala.Application.Services;
-using DigiKala.Persistence.Interfaces;
 using DigiKala.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NLog;
