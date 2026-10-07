@@ -1,36 +1,35 @@
-﻿using DigiKala.Domain.Entities;
+﻿using DigiKala.Application.Interfaces; 
+using DigiKala.Domain.Entities;
+using DigiKala.Infrastructure.Data; 
 using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace DigiKala.Infrastructure.Repositories
-
 {
+    // این بخش ": IProductRepository" برای رفع خطای قبلی شما حیاتی است
     public class ProductRepository : IProductRepository
     {
-        private readonly AppDbContext _context;
+        public readonly AppDbContext _context;
 
-        public ProductRepository()
+        public ProductRepository(AppDbContext context)
         {
-            _context = new AppDbContext();
+            _context = context;
         }
 
-       
-     
-        
-
-        public IEnumerable<Product> Get()
+        public IEnumerable<Product> GetAll()
         {
-            return _context.Products.ToList();
+            return _context.Products.ToList(); // استفاده از ToList به جای ToListAsync
         }
 
-        public Product GetById(int id)
+        public Product? GetById(int id)
         {
-            return _context.Products.Find(id);
+            return _context.Products.Find(id); // استفاده از Find به جای FindAsync
         }
 
-        public void Insert(Product product)
+        public void Add(Product product)
         {
             _context.Products.Add(product);
-            _context.SaveChanges();
+            _context.SaveChanges(); // استفاده از SaveChanges به جای SaveChangesAsync
         }
 
         public void Update(Product product)
@@ -48,12 +47,6 @@ namespace DigiKala.Infrastructure.Repositories
                 _context.SaveChanges();
             }
         }
-
-     
-    }
-
-    public interface IProductRepository
-    {
     }
 }
 
