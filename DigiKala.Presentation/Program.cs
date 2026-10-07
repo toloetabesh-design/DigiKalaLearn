@@ -1,11 +1,9 @@
 ﻿using DigiKala.Application.BusinessServices;
 using DigiKala.Application.Interfaces;
 using DigiKala.Application.Mapping;
-using DigiKala.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
-using DigiKala.Persistence;
 using Infrastructure.Data;
 
 var logger = LogManager.Setup().LoadConfigurationFromFile("nlog.config").GetCurrentClassLogger();
