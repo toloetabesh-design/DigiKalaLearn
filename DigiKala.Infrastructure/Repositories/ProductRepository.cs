@@ -16,18 +16,18 @@ namespace DigiKala.Infrastructure.Repositories
 
         public IEnumerable<Product> GetAll()
         {
-            return _context.Products.ToList(); // استفاده از ToList به جای ToListAsync
+            return _context.Products.ToList(); 
         }
 
         public Product? GetById(int id)
         {
-            return _context.Products.Find(id); // استفاده از Find به جای FindAsync
+            return _context.Products.Find(id); 
         }
 
         public void Add(Product product)
         {
             _context.Products.Add(product);
-            _context.SaveChanges(); // استفاده از SaveChanges به جای SaveChangesAsync
+            _context.SaveChanges();
         }
 
         public void Update(Product product)
