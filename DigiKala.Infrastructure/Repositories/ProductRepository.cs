@@ -45,6 +45,16 @@ namespace DigiKala.Infrastructure.Repositories
                 _context.SaveChanges();
             }
         }
+
+        public object Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Insert(Product newProduct)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 
