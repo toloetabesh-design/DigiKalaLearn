@@ -5,6 +5,7 @@ using DigiKala.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
+using DigiKala.Persistence;
 
 // ۱. تنظیم اولیه لاگر برای مدیریت خطاهای زمان استارت‌آپ
 var logger = LogManager.Setup().LoadConfigurationFromFile("nlog.config").GetCurrentClassLogger();
