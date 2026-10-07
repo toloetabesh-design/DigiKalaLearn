@@ -41,26 +41,20 @@ try
         logger.Info("Swagger is enabled in Development mode.");
     }
 
-    // استفاده از HTTPS (اختیاری برای توسعه محلی)
     app.UseHttpsRedirection();
 
-    // اجازه دسترسی طبق قوانین تعریف شده
     app.UseAuthorization();
 
-    // نگاشت کنترلرها
     app.MapControllers();
 
-    // ۸. اجرای برنامه
     app.Run();
 }
 catch (Exception exception)
 {
-    // اگر برنامه در حین اجرا یا استارت‌آپ کرش کند، خطا را لاگ می‌کند
     logger.Error(exception, "DigiKala Application terminated unexpectedly!");
     throw;
 }
 finally
 {
-    // اطمینان از اینکه تمام لاگ‌ها در فایل ذخیره شده‌اند قبل از بسته شدن کامل برنامه
     LogManager.Shutdown();
 }
