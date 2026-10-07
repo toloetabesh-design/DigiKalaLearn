@@ -1,7 +1,6 @@
-﻿using DigiKala.Application.Interfaces; 
+﻿using DigiKala.Application.Interfaces;
 using DigiKala.Domain.Entities;
-using DigiKala.Infrastructure.Data; 
-using Infrastructure.Data;
+using DigiKala.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace DigiKala.Infrastructure.Repositories

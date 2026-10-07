@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.EntityFrameworkCore;
 using DigiKala.Domain.Entities;
 
-namespace Infrastructure.Data
+namespace DigiKala.Infrastructure.Data
 {
     public class AppDbContext : DbContext
     {

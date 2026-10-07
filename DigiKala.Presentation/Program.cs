@@ -4,8 +4,8 @@ using DigiKala.Application.Mapping;
 using Microsoft.EntityFrameworkCore;
 using NLog;
 using NLog.Web;
-using Infrastructure.Data;
 using DigiKala.Infrastructure.Repositories;
+using DigiKala.Infrastructure.Data;
 
 var logger = LogManager.Setup().LoadConfigurationFromFile("nlog.config").GetCurrentClassLogger();
 
