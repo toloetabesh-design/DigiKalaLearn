@@ -7,16 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="EntityConfigurations\**" />
+    <Compile Remove="Migrations\**" />
+    <Compile Remove="Seeds\**" />
+    <EmbeddedResource Remove="EntityConfigurations\**" />
+    <EmbeddedResource Remove="Migrations\**" />
+    <EmbeddedResource Remove="Seeds\**" />
+    <None Remove="EntityConfigurations\**" />
+    <None Remove="Migrations\**" />
+    <None Remove="Seeds\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.31" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
     <PackageReference Include="NLog.Web.AspNetCore" Version="6.2.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EntityConfigurations\" />
-    <Folder Include="Migrations\" />
-    <Folder Include="Seeds\" />
   </ItemGroup>
 
   <ItemGroup>

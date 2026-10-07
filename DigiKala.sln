@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiKala.Presentation", "Di
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiKala.Application", "DigiKala.Application\DigiKala.Application.csproj", "{4C02F7B6-64CC-43FB-9A2B-6365FF166E2D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiKala.Persistence", "DigiKala.Persistence\DigiKala.Persistence.csproj", "{7B04E3A8-91BA-4356-9F86-2A96ABCA4D20}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiKala.Domain", "DigiKala.Domain\DigiKala.Domain.csproj", "{18A49942-1837-4FDE-8495-21017B6F3438}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigiKala.Infrastructure", "DigiKala.Infrastructure\DigiKala.Infrastructure.csproj", "{861DBA81-65FD-4A58-AF27-02FE7EAEBB32}"
@@ -27,10 +25,6 @@ Global
 		{4C02F7B6-64CC-43FB-9A2B-6365FF166E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C02F7B6-64CC-43FB-9A2B-6365FF166E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C02F7B6-64CC-43FB-9A2B-6365FF166E2D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7B04E3A8-91BA-4356-9F86-2A96ABCA4D20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7B04E3A8-91BA-4356-9F86-2A96ABCA4D20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7B04E3A8-91BA-4356-9F86-2A96ABCA4D20}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7B04E3A8-91BA-4356-9F86-2A96ABCA4D20}.Release|Any CPU.Build.0 = Release|Any CPU
 		{18A49942-1837-4FDE-8495-21017B6F3438}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{18A49942-1837-4FDE-8495-21017B6F3438}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18A49942-1837-4FDE-8495-21017B6F3438}.Release|Any CPU.ActiveCfg = Release|Any CPU
